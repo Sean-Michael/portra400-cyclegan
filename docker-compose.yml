@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  portra400-cyclegan:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/app
+      - ~/Pictures/Orig:/data/raw
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
